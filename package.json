@@ -7,7 +7,8 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "build:c": "emcc -O3 -s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\"]' -I libwebp lib/webp.c libwebp/src/{dec,dsp,demux,enc,mux,utils}/*.c -o dist/a.out.js"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.5",

@@ -61,14 +61,17 @@ const config = {
 module.exports = () => {
     if (isProduction) {
         config.mode = 'production';
-        
+
         config.plugins.push(new MiniCssExtractPlugin());
-        
-        
-        config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
-        
+
+
+        // config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
+
     } else {
         config.mode = 'development';
     }
+    config.plugins.push(new WorkboxWebpackPlugin.InjectManifest({
+        swSrc: path.resolve(__dirname, 'src', 'service-worker.js')
+    }));
     return config;
 };
